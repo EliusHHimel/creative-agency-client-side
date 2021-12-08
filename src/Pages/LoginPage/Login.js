@@ -6,7 +6,7 @@ const Login = () => {
     return (
         <div className='p-5'>
             <center>
-                <img className='lg:w-1/4' src={logo} alt="" />
+                <Link to='/'>  <img className='lg:w-1/4' src={logo} alt="" /></Link>
             </center>
             <h1 className='text-4xl mt-2 font-bold'>Login to your account</h1>
             <div className='flex justify-center align-center'>
@@ -34,10 +34,10 @@ const Login = () => {
                             </a>
                         </div>
                         <div className='mt-4'>
-                            <h1 className='font-bold text-1xl'>Login using Social Media Account</h1>
-                            <br />
+                            <h1 className='font-bold text-2xl'>or</h1>
+
                             <center>
-                                <button className='text-black font-bold py-2 px-4 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png" alt="" /><span className='login-social-margin'>Login With Google</span></button>
+                                <button className='text-black font-bold py-2 mt-2 px-4 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png" alt="" /><span className='login-social-margin'>Login With Google</span></button>
                                 <button className='text-black font-bold py-2 px-4 mt-2 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" /><span className='login-social-margin'>Login With GitHub</span></button>
                             </center>
                             <p className='text-gray-500 mt-2'>
