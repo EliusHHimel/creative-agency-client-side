@@ -36,15 +36,15 @@ const Login = () => {
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                 Sign In
                             </button>
-                            <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/resetpassword">
+                            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to="/resetpassword">
                                 Forgot Password?
-                            </a>
+                            </Link>
                         </div>
                         <div className='mt-4'>
                             <h1 className='font-bold text-2xl'>or</h1>
 
                             <center>
-                                <button onClick={signInWithGoogle} className='text-black font-bold py-2 mt-2 px-4 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-htmlFor-success-google-business-webinar-13.png" alt="" /><span className='login-social-margin'>Login With Google</span></button>
+                                <button onClick={signInWithGoogle} className='text-black font-bold py-2 mt-2 px-4 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://www.boostability.com/wp-content/uploads/2020/01/5847f9cbcef1014c0b5e48c8.png" alt="" /><span className='login-social-margin'>Login With Google</span></button>
                                 <button className='text-black font-bold py-2 px-4 mt-2 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" /><span className='login-social-margin'>Login With GitHub</span></button>
                             </center>
                             <p className='text-gray-500 mt-2'>
