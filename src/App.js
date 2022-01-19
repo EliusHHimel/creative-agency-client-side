@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import AddServices from './Pages/DashboardPage/AdminDashboard/AddServices/AddServices';
+import DashboardRoot from './Pages/DashboardPage/DashboardRoot/DashboardRoot';
 import Home from './Pages/HomePage/Home/Home';
 import Login from './Pages/LoginPage/Login';
 import ProtectedRoute from './Pages/ProtectedRoute/ProtectedRoute';
@@ -15,7 +15,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Signup />} />
           <Route path='/dashboard' element={<ProtectedRoute>
-            <AddServices></AddServices>
+            <DashboardRoot></DashboardRoot>
           </ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
