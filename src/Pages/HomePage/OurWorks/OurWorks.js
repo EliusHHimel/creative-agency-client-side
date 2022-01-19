@@ -5,7 +5,7 @@ const OurWorks = () => {
         <div className='our-works p-5'>
             <h1 className='text-3xl text-white font-bold'>Here Are Some of <span className='text-green-500'>Our Works</span></h1>
             <div>
-                <div className='grid grid-cols-3 gap-x-6 sm:block md:block lg:grid xl:grid p-8'>
+                <div className='grid-cols-3 gap-x-6 sm:block md:block lg:grid xl:grid p-8'>
                     <img className='scale-image' src="https://i.ibb.co/1z6HVHN/carousel-1.png" alt="carousel-1" border="0" />
                     <img className='scale-image' src="https://i.ibb.co/5Bkkvf5/carousel-2.png" alt="carousel-2" border="0" />
                     <img className='scale-image' src="https://i.ibb.co/mHxbQ5m/carousel-3.png" alt="carousel-3" border="0" />

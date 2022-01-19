@@ -5,7 +5,6 @@ init("user_poqY0f1iw085u0eDga4RV");
 
 const ContactUs = () => {
     const form = useRef();
-    console.log(form);
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -21,17 +20,17 @@ const ContactUs = () => {
     };
 
     return (
-        <div className='grid grid-cols-2 p-5 bg-orange-400'>
+        <div className='lg:grid xl:grid grid-cols-2 p-5 bg-orange-400'>
             <div className='text-left p-5'>
-                <h1 className='text-2xl font-bold'>Let us handle your project, professionally.</h1>
+                <h1 className='text-3xl font-bold'>Let us handle your project, professionally.</h1>
                 <p>With well written codes, we build amazing apps for all platforms, mobile and web apps in general.</p>
             </div>
             <div className='p-5'>
                 <form className='w-full max-w-sm' ref={form} onSubmit={sendEmail}>
                     <input className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500' type="text" name="user_name" placeholder='Your name/company name' />
                     <input className='mt-3 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500' type="email" name="user_email" placeholder='Your email address' />
-                    <textarea className='mt-3 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500' name="message" placeholder='You message' />
-                    <input className='mt-1 shadow bg-purple-500 rounded hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type="submit" value="Send" />
+                    <textarea className='mt-3 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500' rows={5} name="message" placeholder='You message' />
+                    <input className='mt-1 w-full shadow bg-purple-500 rounded hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type="submit" value="Send" />
                 </form>
             </div>
         </div>
