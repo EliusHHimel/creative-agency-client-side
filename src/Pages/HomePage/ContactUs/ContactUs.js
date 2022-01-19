@@ -20,7 +20,7 @@ const ContactUs = () => {
     };
 
     return (
-        <div className='lg:grid xl:grid grid-cols-2 p-5 bg-orange-400'>
+        <div className='lg:grid xl:grid grid-cols-2 p-5 bg-orange-400' id='contact'>
             <div className='text-left p-5'>
                 <h1 className='text-3xl font-bold'>Let us handle your project, professionally.</h1>
                 <p>With well written codes, we build amazing apps for all platforms, mobile and web apps in general.</p>
