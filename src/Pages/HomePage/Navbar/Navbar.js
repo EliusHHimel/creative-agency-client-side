@@ -5,7 +5,7 @@ import useFirebase from '../../../Hooks/useFirebase';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState('hidden');
-    const { user } = useFirebase();
+    const { user, signOut } = useFirebase();
 
     const menuToggleHandler = () => {
         setIsOpen(isOpen === 'hidden' ? 'block' : 'hidden');
@@ -28,8 +28,14 @@ const Navbar = () => {
                         <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" href="#our-portfolio">Our Portfolio</a>
                         <NavLink className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" to="#our-team">Our Team</NavLink>
                         <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" href="#contact">Contact</a>
-                        <span className='font-bold'>Hi,</span><span className='p-2 font-bold text-gray-700'>{user.displayName}</span>
-                        {user.email ? <NavLink className="inline-block text-sm px-4 py-2 login-btn leading-none border rounded text-white border-white hover:border-black hover:text-black hover:bg-white mt-4 lg:mt-0" to="/dashboard">Dashboard</NavLink> : <NavLink className="inline-block text-sm px-4 py-2 login-btn leading-none border rounded text-white border-white hover:border-black hover:text-black hover:bg-white mt-4 lg:mt-0" to="/login">Login</NavLink>}
+                        {user.email ? <>
+                            <span className='font-bold'>Hi,</span><span className='px-2 font-bold text-gray-700'>{user.displayName}</span>
+                            <NavLink className="inline-block text-sm px-4 py-2 login-btn leading-none border rounded text-white border-white hover:border-black hover:text-black hover:bg-white mt-4 lg:mt-0" to="/dashboard">Dashboard</NavLink>
+                            <button className="inline-block text-sm px-4 ml-2 py-2 bg-red-700 leading-none border rounded text-white border-white hover:border-black hover:text-black hover:bg-white mt-4 lg:mt-0" onClick={signOut}>Logout</button></> :
+                            <>
+                                <NavLink className="inline-block text-sm px-4 py-2 login-btn leading-none border rounded text-white border-white hover:border-black hover:text-black hover:bg-white mt-4 lg:mt-0" to="/login">Login</NavLink>
+                                <NavLink className="inline-block text-sm px-4 py-2 login-btn leading-none border rounded text-white border-white hover:border-black hover:text-black hover:bg-white mt-4 ml-1 lg:mt-0" to="/register">Register</NavLink>
+                            </>}
                     </div>
                 </div>
             </nav >

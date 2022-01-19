@@ -67,13 +67,15 @@ const useFirebase = () => {
     }
 
     // Login using email and password
-    const loginHandler = event => {
-        event.preventDefault();
+    const loginHandler = (location, navigate) => {
+
 
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 const user = userCredential.user;
                 setUser(user);
+                const destination = location?.state?.from || '/';
+                navigate(destination);
                 setError('');
             })
             .catch(error => {
@@ -82,12 +84,14 @@ const useFirebase = () => {
 
     }
 
-    const registerUser = (event) => {
-        event.preventDefault();
+    const registerUser = (location, navigate) => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setUser(result.user);
+                const destination = location?.state?.from || '/';
+                navigate(destination);
+                setError('');
                 updateDisplayName();
             })
             .catch(error => {
@@ -117,6 +121,7 @@ const useFirebase = () => {
     }
 
     useEffect(() => {
+        let mounted = true;
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
@@ -124,7 +129,8 @@ const useFirebase = () => {
 
             setLoading(false)
         })
-    }, [])
+        return () => mounted = false;
+    }, [user])
 
     return {
         user,
