@@ -4,7 +4,7 @@ import useFirebase from '../../Hooks/useFirebase';
 import logo from "../../images/logos/logo.png";
 
 const Login = () => {
-    const { loginHandler, signInWithGoogle, handleEmail, handlePassword } = useFirebase();
+    const { loginHandler, signInWithGoogle, signInWithGithub, handleEmail, handlePassword } = useFirebase();
     const location = useLocation();
     const navigate = useNavigate();
     const handleSubmit = (e) => {
@@ -44,8 +44,8 @@ const Login = () => {
                             <h1 className='font-bold text-2xl'>or</h1>
 
                             <center>
-                                <button onClick={signInWithGoogle} className='text-black font-bold py-2 mt-2 px-4 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://www.boostability.com/wp-content/uploads/2020/01/5847f9cbcef1014c0b5e48c8.png" alt="" /><span className='login-social-margin'>Login With Google</span></button>
-                                <button className='text-black font-bold py-2 px-4 mt-2 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" /><span className='login-social-margin'>Login With GitHub</span></button>
+                                <button onClick={() => signInWithGoogle(location, navigate)} className='text-black font-bold py-2 mt-2 px-4 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://www.boostability.com/wp-content/uploads/2020/01/5847f9cbcef1014c0b5e48c8.png" alt="" /><span className='login-social-margin'>Login With Google</span></button>
+                                <button onClick={() => signInWithGithub(location, navigate)} className='text-black font-bold py-2 px-4 mt-2 border rounded flex justify-between align-center'><img className='login-logo mr-2' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" /><span className='login-social-margin'>Login With GitHub</span></button>
                             </center>
                             <p className='text-gray-500 mt-2'>
                                 Don't have an account? <Link className='text-blue-500 hover:text-blue-800' to='/register'>Register</Link>

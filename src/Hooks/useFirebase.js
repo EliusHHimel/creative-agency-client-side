@@ -46,20 +46,24 @@ const useFirebase = () => {
         setNumber(event.target.value);
     }
 
-    const signInWithGoogle = () => {
+    const signInWithGoogle = (location, navigate) => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result);
+                const destination = location?.state?.from || '/';
+                navigate(destination);
             })
             .catch(error => {
                 setError(error);
             });
     }
 
-    const signInWithGithub = () => {
+    const signInWithGithub = (location, navigate) => {
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 setUser(result);
+                const destination = location?.state?.from || '/';
+                navigate(destination);
             })
             .catch(error => {
                 setError(error);
@@ -106,7 +110,7 @@ const useFirebase = () => {
         }).then(() => {
 
         }).catch((error) => {
-
+            setError(error.message);
         });
     }
 
