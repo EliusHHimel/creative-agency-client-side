@@ -17,6 +17,9 @@ const DashboardRoot = () => {
     else if (location.pathname === '/dashboard/serviceList') {
         routeName = 'Services List';
     }
+    else if (location.pathname === '/dashboard/orderList') {
+        routeName = 'Orders List';
+    }
     else if (location.pathname === '/dashboard/makeAdmin') {
         routeName = 'Make Admin';
     }
@@ -36,12 +39,13 @@ const DashboardRoot = () => {
                         <h1 className='text-2xl font-bold text-right'>{routeName}</h1>
                     </div>
                     <div>
-                        <h1 className='text-xl font-bold text-right'>{user.displayName}</h1>
+                        <h1 className='text-xl text-right'><i className="fas fa-user-circle"></i> {user.displayName}</h1>
                     </div>
                 </div>
                 <div className='lg:flex mx-4'>
                     <div className='text-left mt-5 flex flex-col'>
                         <NavLink to='/dashboard'><i className="fas fa-tachometer-alt"></i> Dashboard</NavLink>
+                        <NavLink className='mt-4' activeStyle={{}} to='/dashboard/orderList'><i className="fas fa-tags"></i> Order List</NavLink>
                         <NavLink className='mt-4' activeStyle={{}} to='/dashboard/serviceList'><i className="fas fa-list"></i> Services List</NavLink>
                         <NavLink className='mt-4' activeStyle={{}} to='/dashboard/addService'><i className="fas fa-plus"></i> Add Service</NavLink>
                         <NavLink className='mt-4' activeStyle={{}} to='/dashboard/makeAdmin'><i className="fas fa-user-plus"></i> Make Admin</NavLink>

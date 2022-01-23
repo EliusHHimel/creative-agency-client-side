@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, GithubAuthProvider, onAuthStateChanged, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, GithubAuthProvider, onAuthStateChanged, updateProfile, signInWithEmailAndPassword, getIdToken } from "firebase/auth";
 import { useState, useEffect } from 'react';
 
 
@@ -128,6 +128,10 @@ const useFirebase = () => {
         let mounted = true;
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                getIdToken(user)
+                    .then(token => {
+                        localStorage.setItem('idToken', token);
+                    })
                 setUser(user);
             }
 
