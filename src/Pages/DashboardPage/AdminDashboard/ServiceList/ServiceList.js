@@ -7,6 +7,22 @@ const ServiceList = () => {
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
+    const handleServiceDelete = (id) => {
+        const proceed = window.confirm(`Are you sure you want to delete this package?
+        [Note: This will delete the package from our database]
+        `)
+        if (proceed) {
+            fetch(`http://localhost:5000/services/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert('Service Deleted Successfully. Reload the page to see update in the UI.')
+                    }
+                });
+        }
+    }
     return (
         <div>
             <table>
@@ -28,7 +44,7 @@ const ServiceList = () => {
                                     <td className="px-4 py-2 border">{service.title}</td>
                                     <td className="px-4 py-2 border">{service.description}</td>
                                     <td className="px-4 py-2 border">{service.price}</td>
-                                    <td className="px-4 py-2 border"><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+                                    <td className="px-4 py-2 border"><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleServiceDelete(service._id)}>Delete</button></td>
                                 </tr>
                             )
                         })}
