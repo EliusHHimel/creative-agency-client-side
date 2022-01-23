@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
 
@@ -10,6 +10,14 @@ const Signup = () => {
         e.preventDefault()
         registerUser(location, navigate)
     }
+    let title = 'Creative Agency | Your Creative Solutions';
+    if (location.pathname === '/register') {
+        title = 'Register | Your Creative Solutions';
+    }
+
+    useEffect(() => {
+        document.title = title;
+    }, [title])
     return (
         <div>
             <center>

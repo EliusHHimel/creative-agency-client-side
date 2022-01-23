@@ -1,38 +1,58 @@
-import React from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import useFirebase from '../../../Hooks/useFirebase';
 import logo from "../../../images/logos/logo.png";
-import AddServices from '../AdminDashboard/AddServices/AddServices';
-import MakeAdmin from '../AdminDashboard/MakeAdmin/MakeAdmin';
-import ServiceList from '../AdminDashboard/ServiceList/ServiceList';
 
 const DashboardRoot = () => {
+    const { user } = useFirebase();
+    const location = useLocation();
+    let routeName = 'Dashboard';
+
+    if (location.pathname === '/dashboard/addService') {
+        routeName = 'Add Services';
+    }
+    else if (location.pathname === '/dashboard') {
+        routeName = 'Dashboard';
+    }
+    else if (location.pathname === '/dashboard/serviceList') {
+        routeName = 'Services List';
+    }
+    else if (location.pathname === '/dashboard/makeAdmin') {
+        routeName = 'Make Admin';
+    }
+
+    useEffect(() => {
+        document.title = `${routeName} | Creative Agency`;
+    }, [routeName]);
+
     return (
-        <div className='lg:grid grid-cols-2 p-3'>
-            <div className='px-4 py-2'>
-                <div>
-                    <img className='w-3/12' src={logo} alt="" />
-                </div>
-                <div className='text-left mt-5'>
-                    <NavLink activeStyle={{}} to='/dashboard/serviceList'><i className="fas fa-list"></i> Services List</NavLink>
-                    <br />
-                    <NavLink activeStyle={{}} to='/dashboard/addService'><i className="fas fa-plus"></i> Add Service</NavLink>
-                    <br />
-                    <NavLink activeStyle={{}} to='/dashboard/makeAdmin'><i className="fas fa-user-plus"></i> Make Admin</NavLink>
-                </div>
-            </div>
+        <>
             <div>
-                <div>
-                    <h1 className='text-3xl font-bold'>Dashboard</h1>
+                <div className='lg:flex justify-between p-3'>
+                    <div>
+                        <Link to='/'> <img className='w-4/12' src={logo} alt="" /></Link>
+                    </div>
+                    <div>
+                        <h1 className='text-2xl font-bold text-right'>{routeName}</h1>
+                    </div>
+                    <div>
+                        <h1 className='text-xl font-bold text-right'>{user.displayName}</h1>
+                    </div>
                 </div>
+                <div className='lg:flex mx-4'>
+                    <div className='text-left mt-5 flex flex-col'>
+                        <NavLink to='/dashboard'><i className="fas fa-tachometer-alt"></i> Dashboard</NavLink>
+                        <NavLink className='mt-4' activeStyle={{}} to='/dashboard/serviceList'><i className="fas fa-list"></i> Services List</NavLink>
+                        <NavLink className='mt-4' activeStyle={{}} to='/dashboard/addService'><i className="fas fa-plus"></i> Add Service</NavLink>
+                        <NavLink className='mt-4' activeStyle={{}} to='/dashboard/makeAdmin'><i className="fas fa-user-plus"></i> Make Admin</NavLink>
+                    </div>
+                    <div className='mt-5 ml-5 lg:ml-20 dashboard-bg p-5'>
+                        <Outlet />
+                    </div>
 
-                <Routes>
-                    <Route path='/dashboard/serviceList' element={<ServiceList />} />
-                    <Route path='/dashboard/addService' element={<AddServices />} />
-                    <Route path='/dashboard/makeAdmin' element={<MakeAdmin />} />
-                </Routes>
-
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

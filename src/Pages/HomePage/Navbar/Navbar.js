@@ -26,7 +26,7 @@ const Navbar = () => {
                     <div className="text-sm lg:flex-grow">
                         <NavLink className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" to="/">Home</NavLink>
                         <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" href="#our-portfolio">Our Portfolio</a>
-                        <NavLink className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" to="#our-team">Our Team</NavLink>
+                        <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" href="#our-team">Our Team</a>
                         <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" href="#contact">Contact</a>
                         {user.email ? <>
                             <span className='font-bold'>Hi,</span><span className='px-2 font-bold text-gray-700'>{user.displayName}</span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
 import logo from "../../images/logos/logo.png";
@@ -11,6 +11,16 @@ const Login = () => {
         e.preventDefault();
         loginHandler(location, navigate);
     }
+
+    let title = 'Creative Agency | Your Creative Solutions';
+    if (location.pathname === '/login') {
+        title = 'Login | Your Creative Solutions';
+    }
+
+
+    useEffect(() => {
+        document.title = title;
+    }, [title])
     return (
         <div className='p-5'>
             <center>
