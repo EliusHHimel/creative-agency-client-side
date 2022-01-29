@@ -8,6 +8,7 @@ import ServiceList from './Pages/DashboardPage/AdminDashboard/ServiceList/Servic
 import DashboardRoot from './Pages/DashboardPage/DashboardRoot/DashboardRoot';
 import Home from './Pages/HomePage/Home/Home';
 import Login from './Pages/LoginPage/Login';
+import AdminRoute from './Pages/ProtectedRoute/AdminRoute';
 import ProtectedRoute from './Pages/ProtectedRoute/ProtectedRoute';
 import Signup from './Pages/SignupPage/Signup';
 
@@ -23,10 +24,18 @@ function App() {
           <Route path='/dashboard' element={<ProtectedRoute>
             <DashboardRoot></DashboardRoot>
           </ProtectedRoute>}>
-            <Route path='orderList' element={<OrderList />} />
-            <Route path='serviceList' element={<ServiceList />} />
-            <Route path='addService' element={<AddServices />} />
-            <Route path='makeAdmin' element={<MakeAdmin />} />
+            <Route path='orderList' element={<AdminRoute>
+              <OrderList></OrderList>
+            </AdminRoute>} />
+            <Route path='serviceList' element={<AdminRoute>
+              <ServiceList></ServiceList>
+            </AdminRoute>} />
+            <Route path='addService' element={<AdminRoute>
+              <AddServices></AddServices>
+            </AdminRoute>} />
+            <Route path='makeAdmin' element={<AdminRoute>
+              <MakeAdmin></MakeAdmin>
+            </AdminRoute>} />
 
           </Route>
         </Routes>

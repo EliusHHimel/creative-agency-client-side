@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
 import logo from "../../images/logos/logo.png";
@@ -14,13 +14,12 @@ const Login = () => {
 
     let title = 'Creative Agency | Your Creative Solutions';
     if (location.pathname === '/login') {
-        title = 'Login | Your Creative Solutions';
+        title = 'Login | Creative Agency';
     }
 
 
-    useEffect(() => {
-        document.title = title;
-    }, [title])
+
+    document.title = title;
     return (
         <div className='p-5'>
             <center>

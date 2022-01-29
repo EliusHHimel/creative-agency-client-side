@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import useFirebase from '../../../../Hooks/useFirebase';
 
 const ServiceList = () => {
+    const { admin } = useFirebase();
     const [services, setServices] = React.useState([]);
     useEffect(() => {
         fetch('http://localhost:5000/services')
@@ -8,8 +10,7 @@ const ServiceList = () => {
             .then(data => setServices(data))
     }, [])
     const handleServiceDelete = (id) => {
-        const proceed = window.confirm(`Are you sure you want to delete this package?
-        [Note: This will delete the package from our database]
+        const proceed = window.confirm(`Are you sure you want to delete this package? [Note: This will delete the package from our database]
         `)
         if (proceed) {
             fetch(`http://localhost:5000/services/${id}`, {
@@ -23,8 +24,10 @@ const ServiceList = () => {
                 });
         }
     }
+    console.log(admin);
     return (
         <div>
+            {!admin && <h1 className='text-3xl text-red-500'>You are not an allowed to view this page</h1>}
             <table>
                 <thead>
                     <tr>

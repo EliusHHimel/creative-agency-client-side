@@ -29,6 +29,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
 
 
     const handleEmail = event => {
@@ -50,6 +51,7 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result);
+                saveUserToDB(user.email, user.displayName, 'PUT');
                 const destination = location?.state?.from || '/';
                 navigate(destination);
             })
@@ -62,6 +64,7 @@ const useFirebase = () => {
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 setUser(result);
+                saveUserToDB(user.email, user.displayName, 'PUT');
                 const destination = location?.state?.from || '/';
                 navigate(destination);
             })
@@ -72,7 +75,6 @@ const useFirebase = () => {
 
     // Login using email and password
     const loginHandler = (location, navigate) => {
-
 
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
@@ -93,10 +95,12 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setUser(result.user);
+                updateDisplayName();
+                saveUserToDB(email, name, 'POST');
                 const destination = location?.state?.from || '/';
                 navigate(destination);
                 setError('');
-                updateDisplayName();
+
             })
             .catch(error => {
                 setError(error);
@@ -124,6 +128,7 @@ const useFirebase = () => {
             });
     }
 
+
     useEffect(() => {
         let mounted = true;
         onAuthStateChanged(auth, (user) => {
@@ -140,6 +145,32 @@ const useFirebase = () => {
         return () => mounted = false;
     }, [user])
 
+
+    useEffect(() => {
+        setLoading(true);
+        fetch(`http://localhost:5000/users`)
+            .then(res => res.json())
+            .then(data => {
+                const foundAdmin = data.find(admin => user.email === admin.email && admin.role === 'admin');
+                if (foundAdmin) {
+                    setAdmin(true);
+                    setLoading(false);
+                }
+            })
+    }, [user.email]);
+
+    const saveUserToDB = (userEmail, userDisplayName, method) => {
+        const user = { userEmail, userDisplayName };
+        fetch('http://localhost:5000/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
+
     return {
         user,
         signInWithGoogle,
@@ -152,7 +183,8 @@ const useFirebase = () => {
         handleEmail,
         handlePassword,
         handleName,
-        handleNumber
+        handleNumber,
+        admin
     }
 
 };
